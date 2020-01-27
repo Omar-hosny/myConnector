@@ -19,7 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 // connect to DB
 const db = require("./config/keys").mongoURI;
 mongoose
-  .connect(db)
+  .connect(db, {
+    useNewUrlParser: true
+  })
   .then(() => console.log("mongoDB connected.."))
   .catch(err => console.log(err.message));
 
