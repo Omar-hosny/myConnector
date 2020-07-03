@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
 // connect to DB
-const db = require("./config/keys").mongoURI;
+const db = require("./config/keys").MONGO_URI;
 mongoose
   .connect(db, {
     useNewUrlParser: true,
