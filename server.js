@@ -20,10 +20,11 @@ const app = express();
 app.use(cors());
 
 // bodyParser middleWare
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.urlencoded({ extended: true }));
+// Body parser
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 // // connect to DB
 // const db = require("./config/keys").MONGO_URI;
