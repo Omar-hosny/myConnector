@@ -4,23 +4,23 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 
 // Register user
-export const registerUser = (userData, history) => dispatch => {
+export const registerUser = (userData, history) => (dispatch) => {
   axios
     .post("/api/users/register", userData)
-    .then(res => history.push("/login"))
-    .catch(err =>
+    .then((res) => history.push("/login"))
+    .catch((err) =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response.data,
       })
     );
 };
 
 // Login User
-export const loginUser = userData => dispatch => {
+export const loginUser = (userData) => (dispatch) => {
   axios
     .post("/api/users/login", userData)
-    .then(res => {
+    .then((res) => {
       // get token from response
       const { token } = res.data;
       // set token to local storage
@@ -32,23 +32,23 @@ export const loginUser = userData => dispatch => {
       // set current user
       dispatch(setCurrentUser(decode));
     })
-    .catch(err =>
+    .catch((err) =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response.data,
       })
     );
 };
 
-export const setCurrentUser = decode => {
+export const setCurrentUser = (decode) => {
   return {
     type: SET_CURRENT_USER,
-    payload: decode
+    payload: decode,
   };
 };
 
 // Logout user
-export const logoutUser = () => dispatch => {
+export const logoutUser = () => (dispatch) => {
   // Remove token from local storage
   localStorage.removeItem("jwtToken");
   //Remove Auth header from future requests

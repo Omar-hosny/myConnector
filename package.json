@@ -5,10 +5,10 @@
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
-    "start": "node server.js",
-    "server": "nodemon server.js",
+    "start": "cross-env  node server",
+    "server": "nodemon server",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "cross-env concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Omar Hosny",
@@ -28,6 +28,7 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "nodemon": "^1.18.10"
   }
 }
