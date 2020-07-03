@@ -3,12 +3,15 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
+const cors = require("cors");
 // load routes
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
 
 const app = express();
+
+app.use(cors());
 
 // bodyParser middleWare
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,10 +23,10 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("./config/keys").mongoURI;
 mongoose
   .connect(db, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
   })
   .then(() => console.log("mongoDB connected.."))
-  .catch(err => console.log(err.message));
+  .catch((err) => console.log(err.message));
 
 // passport  middleware
 app.use(passport.initialize());

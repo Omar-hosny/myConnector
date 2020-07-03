@@ -98,9 +98,9 @@ class App extends Component {
                 />
               </Switch>
             </div>
-            <Footer />
           </div>
         </Router>
+        <Footer />
       </Provider>
     );
   }
