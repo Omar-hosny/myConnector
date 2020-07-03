@@ -4,10 +4,16 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
 const cors = require("cors");
+const connectDB = require("./config/db");
 // load routes
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
+const dotenv = require("dotenv");
+
+dotenv.config({ path: "./config/config.env" });
+
+connectDB();
 
 const app = express();
 
@@ -19,15 +25,15 @@ app.use(bodyParser.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-// connect to DB
-const db = require("./config/keys").MONGO_URI;
-mongoose
-  .connect(db, {
-    useNewUrlParser: true,
-    useFindAndModify: false,
-  })
-  .then(() => console.log("mongoDB connected.."))
-  .catch((err) => console.log(err.message));
+// // connect to DB
+// const db = require("./config/keys").MONGO_URI;
+// mongoose
+//   .connect(db, {
+//     useNewUrlParser: true,
+//     useFindAndModify: false,
+//   })
+//   .then(() => console.log("mongoDB connected.."))
+//   .catch((err) => console.log(err.message));
 
 // passport  middleware
 app.use(passport.initialize());
